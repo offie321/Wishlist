@@ -9,7 +9,7 @@
         </div>
     </div>
 
-    <form action="{{ route('edit', $wish->id) }}" method="POST">
+    <form action="{{ route('wish.update', $wish->id) }}" method="POST">
         @csrf
         @method("PUT")
         <div class="row">

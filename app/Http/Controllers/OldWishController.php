@@ -6,7 +6,7 @@ use App\Wish;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class WishController extends Controller
+class OldWishController extends Controller
 {
     /**
      * Display a listing of the resource.

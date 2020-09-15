@@ -9,7 +9,7 @@
     </div>
 </div>
 
-<form action="{{ url('/beheer') }}" method="POST">
+<form method="POST" action="{{ route('wish.store') }}">
     @csrf
     <div class="row">
 

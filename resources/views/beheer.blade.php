@@ -12,7 +12,7 @@
         </div>
     @endif
 
-    <a href="{{url('/beheer/create')}}" class="btn btn-success">Toevoegen</a>
+    <a href="{{route('wish.create')}}" class="btn btn-success">Toevoegen</a>
 
     @foreach($wishes as $key => $wish)
     <div class="container wish_container">
@@ -44,8 +44,8 @@
         <br/>
         <div class="row">
             <div class="col-12">
-                <form action="{{ route('destroy', $wish->id) }}" method="POST">
-                <a class="btn btn-warning" href="{{ route('edit', $wish->id) }}">Aanpassen</a>
+                <form action="{{ route('wish.destroy', $wish->id) }}" method="POST">
+                <a class="btn btn-warning" href="{{ route('wish.edit', $wish->id) }}">Aanpassen</a>
                  @csrf
                     @method("DELETE")
                 <button type="submit" class="btn btn-danger">Verwijderen</button>
