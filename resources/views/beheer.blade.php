@@ -12,7 +12,7 @@
         </div>
     @endif
 
-    <a href="{{route('wish.create')}}" class="btn btn-success">Toevoegen</a>
+    <a href="{{ route('wish.create')}}" class="btn btn-success">Toevoegen</a>
 
     @foreach($wishes as $key => $wish)
     <div class="container wish_container">
