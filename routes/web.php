@@ -40,3 +40,7 @@ Route::resource('wish', 'WishController');
 //Route::resource('wishes', 'WishController');
 
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
