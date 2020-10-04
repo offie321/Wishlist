@@ -76,15 +76,24 @@ class WishController extends Controller
 
         //
 
-        Wish::create([
+//Deze gebruiken als het niet werkte!!!!!!
+//        Wish::create([
+//
+////            'user_id' => Auth::user()->id,
+//            'naam' => $request->naam,
+//            'plaatje' => $request->plaatje,
+//            'omschrijving' => $request->omschrijving,
+//            'prijs' => $request->prijs,
+//            'weblink' => $request->weblink
+//        ]);
 
-//            'user_id' => Auth::user()->id,
-            'naam' => $request->naam,
-            'plaatje' => $request->plaatje,
-            'omschrijving' => $request->omschrijving,
-            'prijs' => $request->prijs,
-            'weblink' => $request->weblink
-        ]);
+
+//        Dit weghalen als het niet werkt. (Hierbij gebruik gemaakt van validated data.)
+        $wish = Wish::create($this->validateRequest());
+
+        $this->storeImage($wish);
+
+//        event(new NewWishhasRegisteredEvent($wish));
 
 
         return redirect()->route('wish.create')
@@ -132,6 +141,12 @@ class WishController extends Controller
             'omschrijving' => 'required'
         ]);
 
+
+// moet ook de image kunnen uploaden mar onderstaande
+// code kan hier niet zomaar tussen worden geplaatst.
+
+//        $this->storeImage($wish);
+
         $wish = Wish::find($id);
         $wish->naam = $request->get('naam');
         $wish->plaatje = $request->get('plaatje');
@@ -157,5 +172,34 @@ class WishController extends Controller
         $wish->delete();
 
         return redirect('/wish')->with('success', 'Contact deleted!');
+    }
+
+    public function validateRequest()
+    {
+        return tap($validatedData = request()->validate([
+            'naam' => 'required',
+            'plaatje' => 'required',
+            'omschrijving' => 'required',
+            'prijs' => 'required',
+            'weblink' => 'required',
+        ]), function (){
+
+            if (request()->hasFile('plaatje')){
+                request()->validate([
+                    'plaatje' => 'file|image|max:5000'
+                ]);
+            }
+
+        });
+
+    }
+
+    private function storeImage($wish)
+    {
+        if(request()->has('plaatje')){
+            $wish->update([
+                'plaatje' => request()->plaatje->store('uploads', 'public')
+            ]);
+        }
     }
 }

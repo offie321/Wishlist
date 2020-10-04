@@ -1,10 +1,14 @@
-@extends('template')
+@extends('layouts.app')
 
 @section('titel')
 
 @endsection()
 
 @section('content')
+
+{{--    @if (Route::has('register'))--}}
+{{--        header('location : login.blade.php');--}}
+{{--    @endif--}}
 
     @if($message = Session::get('success'))
         <div class="alert alert-success">
@@ -23,7 +27,7 @@
         </div>
         <div class="row justify-content-around">
             <div class="col-4">
-                <img class="wish_image" src="{{$wish->plaatje}}">
+                <img class="wish_image" src="{{ asset('storage/' . $wish->plaatje) }}">
             </div>
             <div class="col-4">
                 <div class="row height50 overflow-auto">

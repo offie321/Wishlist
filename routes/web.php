@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/beheer' , 'WishController@beheer');
+Route::get('/beheer' , 'WishController@beheer')->middleware('auth');
 Route::resource('wish', 'WishController');
 
 //Route::get('/wish', 'WishController@index');

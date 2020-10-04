@@ -1,4 +1,4 @@
-@extends('template')
+@extends('layouts.app')
 @section('content')
 
 <div class="row">
@@ -9,7 +9,7 @@
     </div>
 </div>
 
-<form method="POST" action="{{ route('wish.store') }}">
+<form method="POST" enctype="multipart/form-data" action="{{ route('wish.store') }}">
     @csrf
     <div class="row">
 
@@ -23,7 +23,7 @@
         <div class="col-lg-10">
             <div class="form-group">
                 <strong>Afbeelding link:</strong>
-                <input type="text" name="plaatje" class="form-control" placeholder="Afbeelding Link">
+                <input type="file" name="plaatje" class="form-control" placeholder="Afbeelding">
             </div>
         </div>
 
@@ -58,5 +58,6 @@
 
     </div>
 </form>
+
 
 @endsection

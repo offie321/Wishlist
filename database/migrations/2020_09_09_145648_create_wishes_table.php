@@ -15,11 +15,11 @@ class CreateWishesTable extends Migration
     {
         Schema::create('wishes', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->text('naam');
-            $table->text('plaatje');
-            $table->text('omschrijving');
+            $table->string('naam');
+            $table->string('plaatje');
+            $table->string('omschrijving');
             $table->integer('prijs');
-            $table->text('weblink');
+            $table->string('weblink');
             $table->timestamps();
         });
     }
